@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sublimetext-2-installer uninstall
+#DEBHELPER#
+

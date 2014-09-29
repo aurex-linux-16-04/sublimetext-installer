@@ -1,0 +1,19 @@
+Source: sublimetext-installer
+Section: admin
+Priority: optional
+Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
+Build-Depends: debhelper (>= 7.0)
+Standards-Version: 3.8.4
+
+Package: sublimetext-installer
+Architecture: all
+Depends: ${misc:Depends}, sublimetext-2-installer
+Description: generic Sublime Text metapackage
+ This package will always depend on the aurex recommended version of
+ the Sublime Text editor
+
+Package: sublimetext-2-installer
+Architecture: all
+Depends: ${misc:Depends}, aurex-cache
+Description: Sublime Text 2 loader package for aurex
+ This package downloads and installs Sublime Text 2 editor
