@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Sublime Text 2
+Type=Application
+Exec=sublime_text
+TryExec=/usr/bin/sublime_text
+Terminal=false
+Icon=/opt/SublimeText/SublimeText2/Icon/256x256/sublime_text.png
+Comment=Sublime Text 2
+NoDisplay=false
+Categories=Application;Development;IDE

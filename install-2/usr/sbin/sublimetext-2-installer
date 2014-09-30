@@ -1,0 +1,64 @@
+#!/bin/sh
+# -------
+# File:        sublimetext-2-installer
+# Description: Download and install Sublime Text 2 Editor
+# Author:      Luis Antonio Garcia Gisbert <luisgg@gmail.com> 
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along 
+# with this program; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin St, Fifth Floor, Boston MA 02110-1301 USA
+# --------
+
+usage(){
+	echo "$(basename "$0") {install|uninstall}" >&2
+	exit 1
+}
+
+[ "$1" ] || usage
+
+if [ "$(dpkg --print-architecture)" = "amd64" ] ; then
+	REQ_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.tar.bz2"
+else
+	REQ_URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.tar.bz2"
+fi
+
+NEW_TARGET_DIR="/opt/SublimeText/SublimeText2"
+
+case "$1" in
+	install)
+		if aurex-cache get "$REQ_URL" ; then
+			TAR_FILE="$(aurex-cache file "$REQ_URL")"
+			if [ "$TAR_FILE" ] && [ -r "$TAR_FILE" ] ; then
+				echo "Installing files"
+				mkdir -p "/opt/SublimeText"
+				tar -C /opt/SublimeText/ -xjf "$TAR_FILE"
+				EXEC_FILE="$(find /opt/SublimeText/ -name "sublime_text")"
+				OLD_TARGET_DIR="$(dirname "$EXEC_FILE")"
+				mv "$OLD_TARGET_DIR" "$NEW_TARGET_DIR"
+				if [ -x "$NEW_TARGET_DIR/sublime_text" ] ; then
+					ln -s  "$NEW_TARGET_DIR/sublime_text"  /usr/bin/sublime_text
+				fi
+			fi
+		fi
+		;;
+	uninstall)
+		rm -fr "/opt/SublimeText"
+		rm -f /usr/bin/sublime_text
+
+		;;
+	*)
+		usage
+		;;
+esac
+
+exit 0
