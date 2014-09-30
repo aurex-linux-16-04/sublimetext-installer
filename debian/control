@@ -14,6 +14,6 @@ Description: generic Sublime Text metapackage
 
 Package: sublimetext-2-installer
 Architecture: all
-Depends: ${misc:Depends}, aurex-cache
+Depends: ${misc:Depends}, aurex-cache (>=0.3)
 Description: Sublime Text 2 loader package for aurex
  This package downloads and installs Sublime Text 2 editor
