@@ -1,3 +1,9 @@
+sublimetext-installer (2.0.2~aurex2) xenial; urgency=medium
+
+  * Rebuild for aurex 16.04 xenial
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 15 Sep 2016 02:11:15 +0200
+
 sublimetext-installer (2.0.2~aurex1) trusty; urgency=low
 
   * Initial release.
